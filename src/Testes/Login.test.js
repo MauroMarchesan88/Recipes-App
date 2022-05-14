@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import App from './App';
+import App from '../App';
+import renderWithRouter from './Helpers/renderWithRouter';
 
 describe('Teste o componente <Login.js>',
   () => {
@@ -11,7 +12,8 @@ describe('Teste o componente <Login.js>',
     const mail = 'test@test.com';
 
     it('Verifica os data-testids dos elementos', () => {
-      render(<App />);
+      renderWithRouter(<App />);
+
       const emailInput = screen.getByTestId(eInput);
       const passwordInput = screen.getByTestId(passInput);
       const submitBtn = screen.getByTestId(subBtn);
@@ -21,7 +23,8 @@ describe('Teste o componente <Login.js>',
       expect(submitBtn).toBeInTheDocument();
     });
     it('Verifica se e possivel escrever o email', () => {
-      render(<App />);
+      renderWithRouter(<App />);
+
       const mockEmail = mail;
       const emailInput = screen.getByTestId(eInput);
       userEvent.type(emailInput, mockEmail);
@@ -29,7 +32,8 @@ describe('Teste o componente <Login.js>',
       expect(emailInput).toHaveProperty('value', mockEmail);
     });
     it('Verifica se e possivel escrever a senha', () => {
-      render(<App />);
+      renderWithRouter(<App />);
+
       const password = '1234567';
       const passwordInput = screen.getByTestId(passInput);
       userEvent.type(passwordInput, password);
@@ -37,7 +41,7 @@ describe('Teste o componente <Login.js>',
       expect(passwordInput).toHaveProperty('value', password);
     });
     it('Verifica os data-testids dos elementos', () => {
-      render(<App />);
+      renderWithRouter(<App />);
 
       const emailInput = screen.getByTestId(eInput);
       const passwordInput = screen.getByTestId(passInput);
@@ -73,7 +77,7 @@ describe('Teste o componente <Login.js>',
       expect(submitBtn).toHaveProperty('disabled', false);
     });
     it('Verifica se os dois tokens são gravados', () => {
-      render(<App />);
+      renderWithRouter(<App />);
 
       const emailInput = screen.getByTestId(eInput);
       const passwordInput = screen.getByTestId(passInput);

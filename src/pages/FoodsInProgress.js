@@ -38,9 +38,7 @@ function RecipeInProgress() {
 
   const endPoint = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${values}`;
   async function getRecipe() {
-    console.log(endPoint);
     const response = await fetch(endPoint);
-    console.log(response);
     const data = await response.json()
       .then((res) => res)
       .catch(() => ({ message: 'JSON inválido' }));
@@ -100,7 +98,6 @@ function RecipeInProgress() {
     allDoneValidation();
   }, [ingredients]);
 
-  console.log(values);
   return (
     <div>
       <img data-testid="recipe-photo" src={ strMealThumb } alt="meal Thumb" />

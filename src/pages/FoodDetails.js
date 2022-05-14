@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useRouteMatch, useHistory } from 'react-router-dom';
-import AppContext from '../context/AppContext';
-import '../styles/RecipeDetails.css';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Carousel from '../components/Carousel';
+import AppContext from '../context/AppContext';
 import {
-  addFavoriteRecipe,
-  removeFavorite,
-  recipesInProgress,
-  thisRecipeIsDone,
-  thisRecipeIsFavorite } from '../helpers/recipeState';
+  addFavoriteRecipe, recipesInProgress, removeFavorite, thisRecipeIsDone,
+  thisRecipeIsFavorite,
+} from '../helpers/recipeState';
+import blackHeartIcon from '../images/blackHeartIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import '../styles/RecipeDetails.css';
 
 function FoodDetails() {
   const {
@@ -93,7 +91,6 @@ function FoodDetails() {
     organizeIngredients();
     handleYoutubeLink();
   }, [recipeDetails]);
-  console.log(recipeDetails);
   return (
     <div>
       <img

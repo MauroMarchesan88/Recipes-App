@@ -31,14 +31,12 @@ describe('Teste o componente <Header.js>',
         renderWithRouter(<App />, '/foods');
 
         const profileBtn = screen.getByTestId(profile);
-        const title = screen.getByRole('banner');
         const searchBtn = screen.getByTestId(searchTopBtn);
         const titleText = await screen.findByText('Foods');
 
         expect(profileBtn).toHaveAttribute('src', profileSRC);
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).toHaveAttribute('src', searchSRC);
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('Não tem header na tela de detalhes de uma receita de comida', async () => {
       renderWithRouter(<App />, '/foods');
@@ -69,14 +67,12 @@ describe('Teste o componente <Header.js>',
         renderWithRouter(<App />, '/drinks');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = screen.getByRole('banner');
         const searchBtn = await screen.findByTestId(searchTopBtn);
         const titleText = await screen.findByText('Drinks');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('Não tem header na tela de detalhes de uma receita de bebidas', async () => {
       renderWithRouter(<App />, '/drinks');
@@ -109,111 +105,122 @@ describe('Teste o componente <Header.js>',
         renderWithRouter(<App />, '/explore');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de explorar comidas',
       async () => {
         renderWithRouter(<App />, '/explore/foods');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore Foods');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de explorar bebidas',
       async () => {
         renderWithRouter(<App />, '/explore/drinks');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore Drinks');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de explorar comidas por ingredientes',
       async () => {
         renderWithRouter(<App />, '/explore/foods/ingredients');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore Ingredients');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de explorar bebidas por ingredientes',
       async () => {
         renderWithRouter(<App />, '/explore/drinks/ingredients');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore Ingredients');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de explorar comidas por nacionalidade',
       async () => {
         renderWithRouter(<App />, '/explore/foods/nationalities');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Explore Nationalities');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de receitas feitas',
       async () => {
         renderWithRouter(<App />, '/done-recipes');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Done Recipes');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
       });
     it('O header tem os ícones corretos na tela de receitas favoritas',
       async () => {
         renderWithRouter(<App />, '/favorite-recipes');
 
         const profileBtn = await screen.findByTestId(profile);
-        const title = await screen.findByRole('banner');
         const searchBtn = screen.queryByTestId(searchTopBtn);
         const titleText = await screen.findByText('Favorite Recipes');
 
         expect(profileBtn).toBeInTheDocument();
-        expect(title).toHaveAttribute(testId, pageTitle);
         expect(searchBtn).not.toBeInTheDocument();
-        expect(titleText).toBeInTheDocument();
+        expect(titleText).toHaveAttribute(testId, pageTitle);
+      });
+    it('Redireciona a pessoa usuária para a tela de perfil ao clicar no botão de perfil',
+      async () => {
+        renderWithRouter(<App />, '/foods');
+
+        const titleText = await screen.findByText('Foods');
+        const profileBtn = await screen.findByTestId(profile);
+
+        expect(titleText).toHaveAttribute(testId, pageTitle);
+        userEvent.click(profileBtn);
+
+        const nextTitle = await screen.findByText('Profile');
+
+        expect(nextTitle).toHaveAttribute(testId, pageTitle);
+      });
+    it('Ao clicar no botão de busca pela primeira vez a barra de busca aparece',
+      async () => {
+        renderWithRouter(<App />, '/foods');
+
+        const searchBtn = screen.queryByTestId(searchTopBtn);
+        const searchHidden = screen.queryByTestId('search-input');
+
+        expect(searchHidden).not.toBeInTheDocument();
+        userEvent.click(searchBtn);
+
+        const searchVisible = await screen.findByTestId('search-input');
+        expect(searchVisible).toBeInTheDocument();
       });
   });

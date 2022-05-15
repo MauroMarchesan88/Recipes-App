@@ -13,18 +13,17 @@ Object.assign(navigator, {
   },
 });
 
-describe('Teste o componente <FoodsDetails.js>',
+describe('Teste o componente <drinkDetails.js>',
   () => {
-    const routeToRecipe = '/foods/52940';
+    const routeToRecipe = '/drinks/17222';
     const photoID = 'recipe-photo';
     const recipeTitle = 'recipe-title';
     const shareBtn = 'share-btn';
     const favBtn = 'favorite-btn';
     const categoryId = 'recipe-category';
     const instructionsID = 'instructions';
-    const videoId = 'video';
     const startId = 'start-recipe-btn';
-    const ingredientId = '5-ingredient-name-and-measure';
+    const ingredientId = '2-ingredient-name-and-measure';
     const recomendationId = '1-recomendation-card';
     jest.spyOn(navigator.clipboard, 'writeText');
 
@@ -37,9 +36,8 @@ describe('Teste o componente <FoodsDetails.js>',
       const favorite = screen.queryByTestId(favBtn);
       const category = screen.queryByTestId(categoryId);
       const instructions = screen.queryByTestId(instructionsID);
-      const video = await screen.findByTestId(videoId);
       const startRecipe = screen.queryByTestId(startId);
-      const ingredient = screen.queryByTestId(ingredientId);
+      const ingredient = await screen.findByTestId(ingredientId);
       const recomendation = await screen.findByTestId(recomendationId);
 
       expect(photo).toBeInTheDocument();
@@ -48,7 +46,6 @@ describe('Teste o componente <FoodsDetails.js>',
       expect(favorite).toBeInTheDocument();
       expect(category).toBeInTheDocument();
       expect(instructions).toBeInTheDocument();
-      expect(video).toBeInTheDocument();
       expect(startRecipe).toBeInTheDocument();
       expect(ingredient).toBeInTheDocument();
       expect(recomendation).toBeInTheDocument();

@@ -12,7 +12,6 @@ function Profile() {
     history.push('/');
   };
 
-  console.log(user);
   return (
     <div className="main-perfil">
       <Header />

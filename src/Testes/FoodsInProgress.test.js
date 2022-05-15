@@ -14,7 +14,6 @@ Object.assign(navigator, {
 
 describe('Teste o componente <Foods.js>',
   () => {
-    // const maxItemsRendered = 13;
     const routeToRecipe = '/foods/53049/in-progress';
     const photoID = 'recipe-photo';
     const recipeTitleId = 'recipe-title';

@@ -2,16 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AppContext from '../context/AppContext';
-import shareIcon from '../images/shareIcon.svg';
 import {
-  addFavoriteRecipe,
-  removeFavorite,
+  addFavoriteRecipe, objectDrink, removeFavorite,
   saveDoneRecipes,
   thisRecipeIsFavorite,
-  objectDrink,
 } from '../helpers/recipeState';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import '../styles/Progress.css';
 
 function DrinksInProgress() {
@@ -39,9 +37,7 @@ function DrinksInProgress() {
 
   const endPoint = `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${values}`;
   async function getRecipe() {
-    console.log(endPoint);
     const response = await fetch(endPoint);
-    console.log(response);
     const data = await response.json()
       .then((res) => res)
       .catch(() => ({ message: 'JSON inválido' }));

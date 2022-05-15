@@ -5,7 +5,7 @@ import React from 'react';
 import App from '../App';
 import renderWithRouter from './Helpers/renderWithRouter';
 
-describe('Teste o componente <Foods.js>',
+describe('Teste o componente <Drinks.js>',
   () => {
     const maxItemsRendered = 12;
     const ordinaryFilterId = 'Ordinary Drink-category-filter';
@@ -15,17 +15,6 @@ describe('Teste o componente <Foods.js>',
     const cocoaFilterId = 'Cocoa-category-filter';
     const allFilterId = 'All-category-filter';
 
-    it('A tela tem os data-testids de todos os 12 cards da tela de comidas', async () => {
-      renderWithRouter(<App />, '/foods');
-
-      const idArray = await screen.findAllByTestId(/\d-recipe-card/gm);
-      const imgArray = await screen.findAllByTestId(/\d-card-img/gm);
-      const nameArray = await screen.findAllByTestId(/\d-card-name/gm);
-
-      expect(idArray.length).toBe(maxItemsRendered);
-      expect(imgArray.length).toBe(maxItemsRendered);
-      expect(nameArray.length).toBe(maxItemsRendered);
-    });
     it('A tela tem os data-testids de todos os 12 cards da tela de bebidas', async () => {
       renderWithRouter(<App />, '/drinks');
 

@@ -8,6 +8,12 @@ import renderWithRouter from './Helpers/renderWithRouter';
 describe('Teste o componente <Foods.js>',
   () => {
     const maxItemsRendered = 12;
+    const beefFilterId = 'Beef-category-filter';
+    const breakfastFilterId = 'Breakfast-category-filter';
+    const chickenFilterId = 'Chicken-category-filter';
+    const dessertFilterId = 'Dessert-category-filter';
+    const goatFilterId = 'Goat-category-filter';
+    const allFilterId = 'All-category-filter';
 
     it('A tela tem os data-testids de todos os 12 cards da tela de comidas', async () => {
       renderWithRouter(<App />, '/foods');
@@ -41,11 +47,11 @@ describe('Teste o componente <Foods.js>',
     it('Deve-se exibir as 5 primeiras categorias de comida', async () => {
       renderWithRouter(<App />, '/foods');
 
-      const category1 = await screen.findByTestId('Beef-category-filter');
-      const category2 = await screen.findByTestId('Breakfast-category-filter');
-      const category3 = await screen.findByTestId('Chicken-category-filter');
-      const category4 = await screen.findByTestId('Dessert-category-filter');
-      const category5 = await screen.findByTestId('Goat-category-filter');
+      const category1 = await screen.findByTestId(beefFilterId);
+      const category2 = await screen.findByTestId(breakfastFilterId);
+      const category3 = await screen.findByTestId(chickenFilterId);
+      const category4 = await screen.findByTestId(dessertFilterId);
+      const category5 = await screen.findByTestId(goatFilterId);
 
       expect(category1).toBeInTheDocument();
       expect(category2).toBeInTheDocument();
@@ -55,22 +61,89 @@ describe('Teste o componente <Foods.js>',
     });
     it('Verificar que o filtro "Beef" funcione', async () => {
       renderWithRouter(<App />, '/foods');
-      const beefFilterBtn = await screen.findByTestId('Beef-category-filter');
+      const beefFilterBtn = await screen.findByTestId(beefFilterId);
       userEvent.click(beefFilterBtn);
 
-      const imgArray = await screen.findAllByTestId(/\d-card-img/gm);
+      const beefMeal = await screen.findByText('Beef and Mustard Pie');
 
-      expect(imgArray[0]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/sytuqu1511553755.jpg');
-      expect(imgArray[1]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/wrssvt1511556563.jpg');
-      expect(imgArray[2]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/z0ageb1583189517.jpg');
-      expect(imgArray[3]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/vtqxtu1511784197.jpg');
-      expect(imgArray[4]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/ursuup1487348423.jpg');
-      expect(imgArray[5]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/uyqrrv1511553350.jpg');
-      expect(imgArray[6]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/1529444830.jpg');
-      expect(imgArray[7]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/bc8v651619789840.jpg');
-      expect(imgArray[8]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/svprys1511176755.jpg');
-      expect(imgArray[9]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/ssrrrs1503664277.jpg');
-      expect(imgArray[10]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/vvpprx1487325699.jpg');
-      expect(imgArray[11]).toHaveProperty('src', 'https://www.themealdb.com/images/media/meals/urzj1d1587670726.jpg');
+      expect(beefMeal).toBeInTheDocument();
+      userEvent.click(beefFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "Breakfast" funcione', async () => {
+      renderWithRouter(<App />, '/foods');
+
+      const breackfastFilterBtn = await screen.findByTestId(breakfastFilterId);
+      userEvent.click(breackfastFilterBtn);
+
+      const breakfastMeal = await screen.findByText('Breakfast Potatoes');
+
+      expect(breakfastMeal).toBeInTheDocument();
+      userEvent.click(breackfastFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "Chicken" funcione', async () => {
+      renderWithRouter(<App />, '/foods');
+
+      const chickenFilterBtn = await screen.findByTestId(chickenFilterId);
+      userEvent.click(chickenFilterBtn);
+
+      const chickenMeal = await screen.findByText('Ayam Percik');
+
+      expect(chickenMeal).toBeInTheDocument();
+      userEvent.click(chickenFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "Dessert" funcione', async () => {
+      renderWithRouter(<App />, '/foods');
+
+      const dessertFilterBtn = await screen.findByTestId(dessertFilterId);
+      userEvent.click(dessertFilterBtn);
+
+      const dessertMeal = await screen.findByText('Apam balik');
+
+      expect(dessertMeal).toBeInTheDocument();
+      userEvent.click(dessertFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "Goat" funcione', async () => {
+      renderWithRouter(<App />, '/foods');
+
+      const goatFilterBtn = await screen.findByTestId(goatFilterId);
+      userEvent.click(goatFilterBtn);
+
+      const goatMeal = await screen.findByText('Mbuzi Choma (Roasted Goat)');
+
+      expect(goatMeal).toBeInTheDocument();
+      userEvent.click(goatFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "All" funcione', async () => {
+      renderWithRouter(<App />, '/foods');
+      const allFilterBtn = await screen.findByTestId(allFilterId);
+      userEvent.click(allFilterBtn);
+
+      const allMeal = await screen.findByText('Corba');
+
+      expect(allMeal).toBeInTheDocument();
+    });
+    it('Verificar que nao re-renderiza vindo de ingredients', async () => {
+      renderWithRouter(<App />, '/explore/foods/ingredients');
+      const ingredient = await screen.findByTestId('0-ingredient-card');
+      userEvent.click(ingredient);
+
+      const allDrink = await screen.findByText('Chicken Handi');
+
+      expect(allDrink).toBeInTheDocument();
     });
   });

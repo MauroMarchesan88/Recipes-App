@@ -13,6 +13,7 @@ describe('Teste o componente <Foods.js>',
     const shakeFilterId = 'Shake-category-filter';
     const otherFilterId = 'Other/Unknown-category-filter';
     const cocoaFilterId = 'Cocoa-category-filter';
+    const allFilterId = 'All-category-filter';
 
     it('A tela tem os data-testids de todos os 12 cards da tela de comidas', async () => {
       renderWithRouter(<App />, '/foods');
@@ -77,6 +78,10 @@ describe('Teste o componente <Foods.js>',
       const ordinaryDrink = await screen.findByText('3-Mile Long Island Iced Tea');
 
       expect(ordinaryDrink).toBeInTheDocument();
+      userEvent.click(ordinaryFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+      expect(allDrink).toBeInTheDocument();
     });
     it('Verificar que o filtro "Cocktail" funcione', async () => {
       renderWithRouter(<App />, '/drinks');
@@ -86,6 +91,10 @@ describe('Teste o componente <Foods.js>',
       const cocktailDrink = await screen.findByText('155 Belmont');
 
       expect(cocktailDrink).toBeInTheDocument();
+      userEvent.click(cocktailFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+      expect(allDrink).toBeInTheDocument();
     });
     it('Verificar que o filtro "Shake" funcione', async () => {
       renderWithRouter(<App />, '/drinks');
@@ -95,6 +104,10 @@ describe('Teste o componente <Foods.js>',
       const shakeDrink = await screen.findByText('Avalanche');
 
       expect(shakeDrink).toBeInTheDocument();
+      userEvent.click(shakeFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+      expect(allDrink).toBeInTheDocument();
     });
     it('Verificar que o filtro "Other/Unknown" funcione', async () => {
       renderWithRouter(<App />, '/drinks');
@@ -104,6 +117,10 @@ describe('Teste o componente <Foods.js>',
       const unknownDrink = await screen.findByText('Apello');
 
       expect(unknownDrink).toBeInTheDocument();
+      userEvent.click(otherFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+      expect(allDrink).toBeInTheDocument();
     });
     it('Verificar que o filtro "Cocoa" funcione', async () => {
       renderWithRouter(<App />, '/drinks');
@@ -113,5 +130,27 @@ describe('Teste o componente <Foods.js>',
       const cocoaDrink = await screen.findByText('Chocolate Drink');
 
       expect(cocoaDrink).toBeInTheDocument();
+      userEvent.click(cocoaFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+      expect(allDrink).toBeInTheDocument();
+    });
+    it('Verificar que o filtro "All" funcione', async () => {
+      renderWithRouter(<App />, '/drinks');
+      const allFilterBtn = await screen.findByTestId(allFilterId);
+      userEvent.click(allFilterBtn);
+
+      const allDrink = await screen.findByText('GG');
+
+      expect(allDrink).toBeInTheDocument();
+    });
+    it('Verificar que nao re-renderiza vindo de ingredients', async () => {
+      renderWithRouter(<App />, '/explore/drinks/ingredients');
+      const ingredient = await screen.findByTestId('0-ingredient-card');
+      userEvent.click(ingredient);
+
+      const allDrink = await screen.findByText('Acapulco');
+
+      expect(allDrink).toBeInTheDocument();
     });
   });

@@ -1,12 +1,10 @@
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import React from 'react';
 import App from '../App';
 import renderWithRouter from './Helpers/renderWithRouter';
 
 describe('Teste o componente <Login.js>',
   () => {
-    // const testId = 'data-testid';
     const drinksId = 'drinks-bottom-btn';
     const exploreId = 'explore-bottom-btn';
     const foodsId = 'food-bottom-btn';

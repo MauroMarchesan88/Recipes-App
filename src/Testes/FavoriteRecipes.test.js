@@ -34,20 +34,20 @@ describe('Teste o componente <DoneRecipes.js>',
     const foodFilterId = 'filter-by-food-btn';
     const drinkFilterId = 'filter-by-drink-btn';
     const allFilterId = 'filter-by-all-btn';
+    const horizImageId = '0-horizontal-image';
     const horizTopTextId = '0-horizontal-top-text';
     const horizNameId = '0-horizontal-name';
-    const horizDoneDateId = '0-horizontal-done-date';
     const horizShareBtnId = '0-horizontal-share-btn';
-    const pastaTagId = '0-Pasta-horizontal-tag';
-    const curryTagId = '0-Curry-horizontal-tag';
-    const horizImageId = '1-horizontal-image';
+    const horiFavBtnId = '0-horizontal-favorite-btn';
+    const horizImageId1 = '1-horizontal-image';
     const horizTopTextId1 = '1-horizontal-top-text';
     const horizNameId1 = '1-horizontal-name';
     const horizShareBtnId1 = '1-horizontal-share-btn';
-    const horizDoneDateId1 = '1-horizontal-done-date';
-    const routeToRecipe = '/done-recipes';
+    const horiFavBtnId1 = '1-horizontal-favorite-btn';
 
-    localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+    const routeToRecipe = '/favorite-recipes';
+
+    localStorage.setItem('favoriteRecipes', JSON.stringify(doneRecipes));
 
     it('Todos os data-testids estão disponíveis', async () => {
       renderWithRouter(<App />, routeToRecipe);
@@ -57,30 +57,28 @@ describe('Teste o componente <DoneRecipes.js>',
       const allFilter = await screen.findByTestId(allFilterId);
       const horizTopText = await screen.findByTestId(horizTopTextId);
       const horizName = await screen.findByTestId(horizNameId);
-      const horizDoneDate = await screen.findByTestId(horizDoneDateId);
+      const horiFavBtn = await screen.findByTestId(horiFavBtnId);
       const horizShareBtn = await screen.findByTestId(horizShareBtnId);
-      const pastaTag = await screen.findByTestId(pastaTagId);
-      const curryTag = await screen.findByTestId(curryTagId);
+      const horizImage1 = await screen.findByTestId(horizImageId1);
       const horizImage = await screen.findByTestId(horizImageId);
       const horizTopText1 = await screen.findByTestId(horizTopTextId1);
       const horizName1 = await screen.findByTestId(horizNameId1);
       const horizShareBtn1 = await screen.findByTestId(horizShareBtnId1);
-      const horizDoneDate1 = await screen.findByTestId(horizDoneDateId1);
+      const horiFavBtn1 = await screen.findByTestId(horiFavBtnId1);
 
       expect(foodFilter).toBeInTheDocument();
       expect(drinkFilter).toBeInTheDocument();
       expect(allFilter).toBeInTheDocument();
       expect(horizTopText).toBeInTheDocument();
       expect(horizName).toBeInTheDocument();
-      expect(horizDoneDate).toBeInTheDocument();
+      expect(horiFavBtn).toBeInTheDocument();
       expect(horizShareBtn).toBeInTheDocument();
-      expect(pastaTag).toBeInTheDocument();
-      expect(curryTag).toBeInTheDocument();
+      expect(horizImage1).toBeInTheDocument();
       expect(horizImage).toBeInTheDocument();
       expect(horizTopText1).toBeInTheDocument();
       expect(horizName1).toBeInTheDocument();
       expect(horizShareBtn1).toBeInTheDocument();
-      expect(horizDoneDate1).toBeInTheDocument();
+      expect(horiFavBtn1).toBeInTheDocument();
     });
     it('Filtro All funciona', async () => {
       renderWithRouter(<App />, routeToRecipe);
@@ -100,8 +98,8 @@ describe('Teste o componente <DoneRecipes.js>',
       const drinkFilter = await screen.findByTestId(drinkFilterId);
       userEvent.click(drinkFilter);
 
-      const filteredDrink = await screen.findByText('Aquamarine');
+      const filteredDrink = await screen.findByTestId('0-horizontal-name');
 
-      expect(filteredDrink).toBeInTheDocument();
+      expect(filteredDrink).toHaveTextContent('Aquamarine');
     });
   });

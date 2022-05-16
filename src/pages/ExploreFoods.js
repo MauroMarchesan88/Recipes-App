@@ -1,7 +1,8 @@
 import React from 'react';
-import MenuInferior from '../components/MenuInferior';
-import Header from '../components/Header';
+import Card from '../components/Card';
 import ExploreDrinksFoods from '../components/ExploreDrinksFoods';
+import Header from '../components/Header';
+import MenuInferior from '../components/MenuInferior';
 
 function ExploreFoods() {
   return (
@@ -9,6 +10,7 @@ function ExploreFoods() {
       <ExploreDrinksFoods />
       <h1 data-testid="page-title">Explore Foods</h1>
       <Header />
+      <Card />
       <MenuInferior />
     </div>
   );

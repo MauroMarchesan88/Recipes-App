@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import App from '../App';
 import renderWithRouter from './Helpers/renderWithRouter';
 
@@ -26,5 +27,31 @@ describe('Teste o componente <RecipesNationality.js>',
         expect(nameArray.length).toBe(maxItemsRendered);
         expect(dropdown).toBeInTheDocument();
         expect(dropdownOptions.length).toBe(maxOptions);
+      });
+    it('Os botoes de filtros funcionam corretamente',
+      async () => {
+        act(() => {
+          renderWithRouter(<App />, routeToRecipe);
+        });
+        const nameArray = await screen.findAllByTestId(/\d-card-name/gm);
+        const dropdown = screen.getByRole('combobox');
+
+        act(() => {
+          userEvent.selectOptions(dropdown, 'American');
+        });
+        const filterIsSelected = await screen.findByText('American');
+        expect(filterIsSelected).toBeInTheDocument();
+
+        const firstRecipe = await screen.findByText('Banana Pancakes');
+
+        expect(firstRecipe).toBeInTheDocument();
+        expect(nameArray.length).toBe(maxItemsRendered);
+
+        act(() => {
+          userEvent.selectOptions(dropdown, 'All');
+        });
+        const firstRecipeFilterAll = await screen.findByText('Corba');
+        expect(firstRecipeFilterAll).toBeInTheDocument();
+        expect(nameArray.length).toBe(maxItemsRendered);
       });
   });
